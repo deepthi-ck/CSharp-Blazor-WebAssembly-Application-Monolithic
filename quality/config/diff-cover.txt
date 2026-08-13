@@ -1,0 +1,4 @@
+# MiniCover coverage XML is consumed by diff-cover (OpenCover/Cobertura compatible).
+# Tool verified version: UNRESOLVED (not C# version dependent).
+coverage-file: quality/reports/minicover/cobertura.xml
+compare-branch: C#_net6.0

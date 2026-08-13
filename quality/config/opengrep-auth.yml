@@ -1,0 +1,6 @@
+rules:
+  - id: csharp-auth-access
+    languages: [csharp]
+    severity: INFO
+    message: Public health endpoint without access-control gate
+    pattern: '"/health"'

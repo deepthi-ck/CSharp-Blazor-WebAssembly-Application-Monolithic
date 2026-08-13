@@ -1,0 +1,17 @@
+bin/
+obj/
+.vs/
+*.user
+*.suo
+quality/reports/**
+!quality/reports/**/
+!quality/reports/**/.gitkeep
+TestResults/
+.coverage/
+coverage.xml
+coverage.json
+lcov.info
+*.log
+__pycache__/
+.dotnet/
+.idea/

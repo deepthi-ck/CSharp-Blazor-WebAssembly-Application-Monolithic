@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>BlazorWasmMonolith.Tests</RootNamespace>
+    <AssemblyName>CSharpBlazorWasmMonolith.Tests</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\src\CSharpBlazorWasmMonolith.csproj" />
+  </ItemGroup>
+  <ItemGroup Condition="$(TargetFramework.StartsWith('net4'))">
+    <Reference Include="System.Net.Http" />
+    <PackageReference Include="System.Text.Json" Version="8.0.5" />
+    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,6 @@
+rules:
+  - id: csharp-null-key-guard
+    languages: [csharp]
+    severity: INFO
+    message: Key validation uses string.IsNullOrWhiteSpace
+    pattern: string.IsNullOrWhiteSpace(...)

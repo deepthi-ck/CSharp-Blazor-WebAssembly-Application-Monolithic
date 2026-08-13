@@ -1,0 +1,9 @@
+{
+  "stryker-config": {
+    "project": "src/CSharpBlazorWasmMonolith.csproj",
+    "test-projects": ["tests/CSharpBlazorWasmMonolith.Tests.csproj"],
+    "reporters": ["html", "json", "cleartext"],
+    "output-path": "quality/reports/stryker",
+    "ignore-methods": ["ToString", "ConfigureAwait"]
+  }
+}

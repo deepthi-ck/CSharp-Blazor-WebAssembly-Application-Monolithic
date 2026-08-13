@@ -1,0 +1,22 @@
+C# Blazor WebAssembly Application
+Scenario 1 — Monolithic (same repo, same version, flat single module)
+
+USER
+  -> Blazor WASM Dashboard (App.razor / AppDashboard.razor / wwwroot)
+  -> HttpClient (AppClient)
+  -> App API (GET/PUT/DELETE /health /version /app/stats)
+  -> App Service
+  -> App Manager
+  -> Partition Router (3 in-process nodes)
+  -> Store Node + InMemoryStore
+  -> Replication / TTL / Eviction
+  -> JSON response -> Blazor WASM client -> USER
+
+Conceptual inspiration: https://github.com/dotnet/aspnetcore
+Do not clone the ASP.NET Core repository.
+
+Constraints:
+- One Customer Version per git branch for the whole monolith
+- UI TFM == API TFM
+- No Scenario 2 FE/BE split branches
+- One implementation of models, routing, replication, build, and quality configs

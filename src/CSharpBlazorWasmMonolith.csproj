@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>BlazorWasmMonolith</RootNamespace>
+    <AssemblyName>CSharpBlazorWasmMonolith</AssemblyName>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute">
+      <_Parameter1>CustomerVersion</_Parameter1>
+      <_Parameter2>$(CustomerVersion)</_Parameter2>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute">
+      <_Parameter1>BranchName</_Parameter1>
+      <_Parameter2>$(BranchName)</_Parameter2>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute">
+      <_Parameter1>AppTargetFramework</_Parameter1>
+      <_Parameter2>$(AppTargetFramework)</_Parameter2>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute">
+      <_Parameter1>Scenario</_Parameter1>
+      <_Parameter2>$(Scenario)</_Parameter2>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute">
+      <_Parameter1>ModuleLayout</_Parameter1>
+      <_Parameter2>$(ModuleLayout)</_Parameter2>
+    </AssemblyAttribute>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="App.razor;Routes.razor;AppDashboard.razor;_Imports.razor;Pages\**\*.razor" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="wwwroot\**\*" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="..\config\appsettings.json" Link="config\appsettings.json" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="..\data\sample-app-data.json" Link="data\sample-app-data.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <ItemGroup Condition="$(TargetFramework.StartsWith('net4'))">
+    <Reference Include="System.Net.Http" />
+    <PackageReference Include="System.Text.Json" Version="8.0.5" />
+    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="CSharpBlazorWasmMonolith.Tests" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,6 @@
+{
+  "language": "csharp",
+  "paths": ["src", "tests"],
+  "verifiedVersion": 8,
+  "derivation": ".NET 8-10, C# 8-14"
+}

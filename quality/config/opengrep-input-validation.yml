@@ -1,0 +1,9 @@
+rules:
+  - id: csharp-input-validation
+    languages: [csharp]
+    severity: INFO
+    message: Input validation / argument checks
+    pattern-either:
+      - pattern: throw new ArgumentNullException(...)
+      - pattern: throw new ArgumentException(...)
+      - pattern: string.IsNullOrWhiteSpace(...)

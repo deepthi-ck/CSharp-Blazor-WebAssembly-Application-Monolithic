@@ -1,0 +1,32 @@
+@using System.Net.Http
+@using BlazorWasmMonolith
+@page "/"
+@inject HttpClient Http
+
+<section>
+    <h1>C# Blazor WebAssembly Application</h1>
+    <p>Scenario 1 — Monolithic / flat (single module)</p>
+    <p>Customer Version: @CustomerVersion</p>
+    <p>Branch: @Branch</p>
+    <p>Status: @Status</p>
+    <p>Last value: @LastValue</p>
+</section>
+
+@code {
+    string CustomerVersion = "";
+    string Branch = "";
+    string Status = "idle";
+    string LastValue = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        AppClient client = new AppClient(Http, false);
+        VersionInfo version = await client.GetVersionAsync();
+        CustomerVersion = version.CustomerVersion;
+        Branch = version.Branch;
+        AppResponse put = await client.PutAsync("product:1001", "Visvantha", null);
+        AppResponse get = await client.GetAsync("product:1001");
+        Status = get.Status;
+        LastValue = get.Value;
+    }
+}

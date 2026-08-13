@@ -1,0 +1,6 @@
+rules:
+  - id: csharp-code-health-large-type
+    languages: [csharp]
+    severity: INFO
+    message: Type declarations for complexity/code-health inventory
+    pattern: namespace BlazorWasmMonolith

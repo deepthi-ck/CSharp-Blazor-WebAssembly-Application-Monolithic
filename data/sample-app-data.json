@@ -1,0 +1,7 @@
+{
+  "items": [
+    { "key": "product:1001", "value": "Visvantha" },
+    { "key": "basket:2001", "value": "sample-basket" },
+    { "key": "customer:3001", "value": "sample-customer" }
+  ]
+}

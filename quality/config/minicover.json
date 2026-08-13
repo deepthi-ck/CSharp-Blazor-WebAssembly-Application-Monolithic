@@ -1,0 +1,8 @@
+{
+  "workdir": ".",
+  "assemblies": ["**/CSharpBlazorWasmMonolith.dll"],
+  "sources": ["src/**/*.cs"],
+  "tests": ["tests/**/*.cs"],
+  "coverageFile": "quality/reports/minicover/cobertura.xml",
+  "threshold": 1
+}
