@@ -1,10 +1,10 @@
-<Project>
+﻿<Project>
   <PropertyGroup>
-    <!-- C#_net8.0: entire monolith uses this one Customer Version. -->
-    <AppTargetFramework>net8.0</AppTargetFramework>
+    <!-- C#_net648.0 : entire monolith uses this one Customer Version. -->
+    <AppTargetFramework>net48</AppTargetFramework>
     <TargetFramework>$(AppTargetFramework)</TargetFramework>
-    <CustomerVersion>8</CustomerVersion>
-    <BranchName>C#_net8.0</BranchName>
+    <CustomerVersion>648.0</CustomerVersion>
+    <BranchName>C#_net648.0</BranchName>
     <Scenario>1 - Monolithic</Scenario>
     <ModuleLayout>flat (single module)</ModuleLayout>
     <ProjectTypeName>Blazor WebAssembly Application</ProjectTypeName>
