@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Resources · C# Blazor WebAssembly</title>
+  <link rel="stylesheet" href="/css/app.css" />
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar"></aside>
+    <div class="main">
+      <header class="topbar">
+        <h2 class="title">Blazor resource operations</h2>
+        <div class="meta">
+          <span class="pill" id="meta-branch">Branch loading</span>
+          <span class="pill" id="meta-customer">Customer loading</span>
+          <span class="pill" id="meta-tfm"></span>
+        </div>
+      </header>
+      <main class="content">
+        <p class="lede">The hosted UI calls the same AppApi as AppClient. Keys hash to a partition node and replicate with DateTimeOffset TTL.</p>
+        <div class="grid-2">
+          <section class="card">
+            <h2>Catalog request</h2>
+            <label for="resource-key">Resource key</label>
+            <input id="resource-key" name="resource-key" placeholder="product:1001" value="product:1001" />
+            <label for="resource-value">Resource value</label>
+            <input id="resource-value" name="resource-value" placeholder="Visvantha" value="Visvantha" />
+            <div class="actions">
+              <button type="button" id="btn-put">PUT</button>
+              <button type="button" class="secondary" id="btn-get">GET</button>
+              <button type="button" class="danger" id="btn-delete">DELETE</button>
+            </div>
+            <p class="hint">Placeholders use catalog keys from data/sample-app-data.json.</p>
+            <pre class="output" id="resource-output">Awaiting an operation.</pre>
+          </section>
+          <section class="card">
+            <h2>Primary store</h2>
+            <table>
+              <thead><tr><th>Key</th><th>Value</th><th>Node</th></tr></thead>
+              <tbody id="resource-rows"></tbody>
+            </table>
+          </section>
+        </div>
+      </main>
+    </div>
+  </div>
+  <script src="/js/app.js"></script>
+  <script>BlazorUi.boot("resources");</script>
+</body>
+</html>
