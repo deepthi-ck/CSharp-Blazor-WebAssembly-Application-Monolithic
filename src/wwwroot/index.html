@@ -2,35 +2,43 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>C# Blazor WebAssembly Application — Scenario 1 Monolithic</title>
-  <style>
-    body { font-family: Segoe UI, sans-serif; margin: 2rem; }
-    code { background: #f2f2f2; padding: 0.1rem 0.3rem; }
-    .ok { color: #0a7; }
-    .fail { color: #c00; }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard · C# Blazor WebAssembly</title>
+  <link rel="stylesheet" href="/css/app.css" />
 </head>
 <body>
-  <h1>C# Blazor WebAssembly Application</h1>
-  <p>Scenario 1 — Monolithic / flat (single module)</p>
-  <p>Branch: <code id="branch">loading…</code></p>
-  <p>Customer Version: <code id="version">loading…</code></p>
-  <p>Health: <code id="health">loading…</code></p>
-  <p>PUT/GET: <code id="flow">loading…</code></p>
-  <p>Stats: <code id="stats">loading…</code></p>
-  <script>
-    async function run() {
-      const version = await (await fetch('/version')).json();
-      document.getElementById('branch').textContent = version.branch;
-      document.getElementById('version').textContent = version.customer_version;
-      const health = await (await fetch('/health')).json();
-      document.getElementById('health').textContent = health.status + ' / nodes=' + health.nodes;
-      await fetch('/app/product:1001', { method: 'PUT', body: 'Visvantha' });
-      const got = await (await fetch('/app/product:1001')).json();
-      document.getElementById('flow').textContent = got.status + ' ' + got.value;
-      document.getElementById('stats').textContent = await (await fetch('/app/stats')).text();
-    }
-    run().catch(err => document.getElementById('flow').textContent = err);
-  </script>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar"></aside>
+    <div class="main">
+      <header class="topbar">
+        <h2 class="title">Blazor WebAssembly dashboard</h2>
+        <div class="meta">
+          <span class="pill" id="meta-branch">Branch loading</span>
+          <span class="pill" id="meta-customer">Customer loading</span>
+          <span class="pill" id="meta-tfm"></span>
+        </div>
+      </header>
+      <main class="content">
+        <p class="lede" id="dash-app">C# Blazor WebAssembly Application — Scenario 1 monolithic, flat single module.</p>
+        <p class="lede" id="dash-scenario"></p>
+        <section class="grid">
+          <article class="card"><p class="kpi-label">Health</p><p class="kpi status-ok" id="kpi-health">…</p></article>
+          <article class="card"><p class="kpi-label">Partition nodes</p><p class="kpi" id="kpi-nodes">…</p></article>
+          <article class="card"><p class="kpi-label">Primary entries</p><p class="kpi" id="kpi-entries">…</p></article>
+          <article class="card"><p class="kpi-label">Git branch</p><p class="kpi" id="kpi-branch">…</p></article>
+        </section>
+        <section class="card" style="margin-top:16px;">
+          <h2>In-memory catalog</h2>
+          <table>
+            <thead><tr><th>Resource key</th><th>Stored value</th><th>Primary node</th></tr></thead>
+            <tbody id="dash-inventory"></tbody>
+          </table>
+          <p class="hint">Sample keys loaded at startup: product:1001, basket:2001, customer:3001. Operator pages: Dashboard, Resources, Statistics, Nodes, Health, Version.</p>
+        </section>
+      </main>
+    </div>
+  </div>
+  <script src="/js/app.js"></script>
+  <script>BlazorUi.boot("dashboard");</script>
 </body>
 </html>

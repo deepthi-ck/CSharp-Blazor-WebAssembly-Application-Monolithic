@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Net.Http;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
@@ -49,10 +50,16 @@ namespace BlazorWasmMonolith
                 Console.WriteLine("Customer Version: " + build.CustomerVersion);
                 Console.WriteLine("TFM: " + build.TargetFramework);
                 Console.WriteLine("Listening: " + prefix);
+                Console.WriteLine("Operator UI: " + prefix);
 
                 if (HasFlag(args, "--self-test"))
                 {
                     int code = await SelfTest(prefix).ConfigureAwait(false);
+                    if (code == 0)
+                    {
+                        code = await HttpUiSelfTest(prefix).ConfigureAwait(false);
+                    }
+
                     host.Stop();
                     return code;
                 }
@@ -104,6 +111,37 @@ namespace BlazorWasmMonolith
                 }
 
                 Console.WriteLine("Self-test PASS");
+                return 0;
+            }
+        }
+
+        private static async Task<int> HttpUiSelfTest(string prefix)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                client.Timeout = TimeSpan.FromSeconds(10);
+                string[] pages = new[] { "/", "/resources.html", "/stats.html", "/nodes.html", "/health.html", "/version.html", "/css/app.css", "/js/app.js" };
+                foreach (string page in pages)
+                {
+                    HttpResponseMessage ui = await client.GetAsync(prefix.TrimEnd('/') + page).ConfigureAwait(false);
+                    if (!ui.IsSuccessStatusCode)
+                    {
+                        Console.Error.WriteLine("UI failed: " + page + " " + (int)ui.StatusCode);
+                        return 1;
+                    }
+
+                    string html = await ui.Content.ReadAsStringAsync().ConfigureAwait(false);
+                    if (page.EndsWith(".html") || string.Equals(page, "/", StringComparison.Ordinal))
+                    {
+                        if (html.IndexOf("Blazor", StringComparison.Ordinal) < 0 || html.IndexOf("sidebar", StringComparison.OrdinalIgnoreCase) < 0)
+                        {
+                            Console.Error.WriteLine("UI navigation markup missing: " + page);
+                            return 1;
+                        }
+                    }
+                }
+
+                Console.WriteLine("HTTP UI self-test PASS");
                 return 0;
             }
         }

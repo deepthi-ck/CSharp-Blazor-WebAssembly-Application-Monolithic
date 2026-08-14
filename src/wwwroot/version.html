@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Version · C# Blazor WebAssembly</title>
+  <link rel="stylesheet" href="/css/app.css" />
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar"></aside>
+    <div class="main">
+      <header class="topbar">
+        <h2 class="title">Blazor customer version</h2>
+        <div class="meta">
+          <span class="pill" id="meta-branch">Branch loading</span>
+          <span class="pill" id="meta-customer">Customer loading</span>
+          <span class="pill" id="meta-tfm"></span>
+        </div>
+      </header>
+      <main class="content">
+        <p class="lede">The whole monolith uses one Customer Version on this branch. UI, AppClient, and AppApi are not split.</p>
+        <section class="grid-2">
+          <article class="card">
+            <p class="kpi-label">Application</p><p id="ver-application"></p>
+            <p class="kpi-label">Scenario</p><p id="ver-scenario"></p>
+            <p class="kpi-label">Module</p><p id="ver-module"></p>
+            <p class="kpi-label">Customer version</p><p class="kpi" id="ver-customer"></p>
+            <p class="kpi-label">Branch</p><p id="ver-branch"></p>
+            <p class="kpi-label">Target framework</p><p id="ver-tfm"></p>
+            <p class="kpi-label">App</p><p id="ver-app"></p>
+          </article>
+          <article class="card">
+            <h2>GET /version</h2>
+            <pre class="output" id="ver-json"></pre>
+          </article>
+        </section>
+      </main>
+    </div>
+  </div>
+  <script src="/js/app.js"></script>
+  <script>BlazorUi.boot("version");</script>
+</body>
+</html>
