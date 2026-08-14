@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Health · C# Blazor WebAssembly</title>
+  <link rel="stylesheet" href="/css/app.css" />
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar"></aside>
+    <div class="main">
+      <header class="topbar">
+        <h2 class="title">Blazor health probe</h2>
+        <div class="meta">
+          <span class="pill" id="meta-branch">Branch loading</span>
+          <span class="pill" id="meta-customer">Customer loading</span>
+          <span class="pill" id="meta-tfm"></span>
+        </div>
+      </header>
+      <main class="content">
+        <p class="lede">GET /health from AppApi. Reports Blazor WASM host availability and required C# built-ins.</p>
+        <section class="grid">
+          <article class="card"><p class="kpi-label">Status</p><p class="kpi status-ok" id="health-status">…</p></article>
+          <article class="card"><p class="kpi-label">Blazor WASM app</p><p class="kpi" id="health-runtime">…</p></article>
+          <article class="card"><p class="kpi-label">Nodes</p><p class="kpi" id="health-nodes">…</p></article>
+          <article class="card"><p class="kpi-label">Built-ins</p><p class="kpi" id="health-builtins">…</p></article>
+        </section>
+        <section class="card" style="margin-top:16px;">
+          <h2>Scenario</h2>
+          <p id="health-scenario"></p>
+          <pre class="output" id="health-json"></pre>
+        </section>
+      </main>
+    </div>
+  </div>
+  <script src="/js/app.js"></script>
+  <script>BlazorUi.boot("health");</script>
+</body>
+</html>
