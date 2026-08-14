@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace BlazorWasmMonolith
 {
@@ -36,6 +37,16 @@ namespace BlazorWasmMonolith
         public AppResponse Delete(string key)
         {
             return _manager.Delete(key);
+        }
+
+        public IList<object> ListResources()
+        {
+            return _manager.ListResources();
+        }
+
+        public IList<object> ListNodes()
+        {
+            return _manager.ListNodes();
         }
     }
 }
