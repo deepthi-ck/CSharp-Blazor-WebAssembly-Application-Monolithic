@@ -38,7 +38,8 @@ namespace BlazorWasmMonolith
                 Status = "healthy",
                 BlazorWasmApp = "available",
                 Nodes = _service.Manager.NodeCount(),
-                Scenario = "1-monolithic"
+                Scenario = "1-monolithic",
+                CsharpBuiltins = "required"
             };
         }
 
@@ -61,8 +62,20 @@ namespace BlazorWasmMonolith
                 evictions = stats.Evictions,
                 expirations = stats.Expirations,
                 entryCount = _service.Manager.EntryCount(),
-                nodeCount = _service.Manager.NodeCount()
+                nodeCount = _service.Manager.NodeCount(),
+                entries = _service.ListResources().Count,
+                nodes = _service.Manager.NodeCount()
             };
+        }
+
+        public IList<object> ListResources()
+        {
+            return _service.ListResources();
+        }
+
+        public IList<object> ListNodes()
+        {
+            return _service.ListNodes();
         }
 
         public AppResponse Get(string key)
@@ -129,6 +142,9 @@ namespace BlazorWasmMonolith
 
             [JsonPropertyName("scenario")]
             public string Scenario { get; set; }
+
+            [JsonPropertyName("csharp_builtins")]
+            public string CsharpBuiltins { get; set; }
         }
 
         private sealed class SampleDocument

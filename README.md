@@ -40,9 +40,24 @@ This detects the branch, validates the single TFM, checks C# built-in usage, bui
 dotnet run --project src/CSharpBlazorWasmMonolith.csproj
 ```
 
-- UI: http://127.0.0.1:5080/
-- `GET /health` `GET /version` `GET /app/stats`
+- Operator UI: http://127.0.0.1:5080/
+- `GET /health` `GET /version` `GET /app/stats` `GET /app/resources` `GET /app/nodes`
 - `GET|PUT|DELETE /app/{key}`
+
+## Operator UI
+
+Full page-to-page navigation (not a single-page-only console):
+
+| Page | Route |
+|---|---|
+| Dashboard | `/` |
+| Resources | `/resources.html` |
+| Statistics | `/stats.html` |
+| Partition nodes | `/nodes.html` |
+| Health | `/health.html` |
+| Version | `/version.html` |
+
+Catalog placeholders use `product:1001` / `Visvantha`. The hosted UI talks to the same in-process `AppApi` as `AppClient`.
 
 ## Quality tools (all 12, every branch)
 
