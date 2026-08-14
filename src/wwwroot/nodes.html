@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Partition nodes · C# Blazor WebAssembly</title>
+  <link rel="stylesheet" href="/css/app.css" />
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar"></aside>
+    <div class="main">
+      <header class="topbar">
+        <h2 class="title">Blazor partition nodes</h2>
+        <div class="meta">
+          <span class="pill" id="meta-branch">Branch loading</span>
+          <span class="pill" id="meta-customer">Customer loading</span>
+          <span class="pill" id="meta-tfm"></span>
+        </div>
+      </header>
+      <main class="content">
+        <p class="lede">Keys hash to a primary node. PUT and DELETE replicate to the other in-process nodes.</p>
+        <section class="grid" id="node-cards"></section>
+      </main>
+    </div>
+  </div>
+  <script src="/js/app.js"></script>
+  <script>BlazorUi.boot("nodes");</script>
+</body>
+</html>

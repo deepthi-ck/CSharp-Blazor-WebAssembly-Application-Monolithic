@@ -14,6 +14,7 @@ namespace BlazorWasmMonolith.Tests
             failures += Run("AppManagerTest", AppManagerTest.Run);
             failures += Run("AppServiceTest", AppServiceTest.Run);
             failures += Run("AppClientTest", AppClientTest.Run);
+            failures += Run("UiNavigationTest", UiNavigationTest.Run);
 
             Console.WriteLine(failures == 0 ? "ALL TESTS PASS" : "TESTS FAILED: " + failures);
             return failures == 0 ? 0 : 1;
